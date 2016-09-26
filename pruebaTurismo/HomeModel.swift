@@ -8,95 +8,47 @@
 
 import Foundation
 
-protocol HomeModelProtocal: class {
-    func itemsDownloaded(items: NSArray)
-}
-
-
-class HomeModel: NSObject, NSURLSessionDataDelegate {
+override func viewDidLoad() {
+    super.viewDidLoad()
+    // Do any additional setup after loading the view, typically from a nib.
     
-    //properties
-    
-    weak var delegate: HomeModelProtocal!
-    
-    var data : NSMutableData = NSMutableData()
-    
-    let urlPath: String = "http://localhost/service.php/";//this will be changed to the path where service.php lives
-    func downloadItems() {
+    let requestURL: NSURL = NSURL(string: "http://www.learnswiftonline.com/Samples/subway.json")!
+    let urlRequest: NSMutableURLRequest = NSMutableURLRequest(URL: requestURL)
+    let session = NSURLSession.sharedSession()
+    let task = session.dataTaskWithRequest(urlRequest) {
+        (data, response, error) -> Void in
         
-        let url: NSURL = NSURL(string: urlPath)!
-        var session: NSURLSession!
-        let configuration = NSURLSessionConfiguration.defaultSessionConfiguration()
+        let httpResponse = response as! NSHTTPURLResponse
+        let statusCode = httpResponse.statusCode
         
-        
-        session = NSURLSession(configuration: configuration, delegate: self, delegateQueue: nil)
-        
-        let task = session.dataTaskWithURL(url)
-        
-        task.resume()
-        
-    }
-    
-    func URLSession(session: NSURLSession, dataTask: NSURLSessionDataTask, didReceiveData data: NSData) {
-        self.data.appendData(data);
-        
-    }
-    
-    func URLSession(session: NSURLSession, task: NSURLSessionTask, didCompleteWithError error: NSError?) {
-        if error != nil {
-            print("Failed to download data")
-        }else {
-            print("Data downloaded")
-            self.parseJSON()
-        }
-        
-    }
-}
-
-
-func parseJSON() {
-    
-    var jsonResult: NSMutableArray = NSMutableArray()
-    
-    do{
-        jsonResult = try NSJSONSerialization.JSONObjectWithData(self.data, options:NSJSONReadingOptions.AllowFragments) as! NSMutableArray
-        
-    } catch let error as NSError {
-        print(error)
-        
-    }
-    
-    var jsonElement: NSDictionary = NSDictionary()
-    let locations: NSMutableArray = NSMutableArray()
-    
-    for(var i = 0; i < jsonResult.count; i++)
-    {
-        
-        jsonElement = jsonResult[i] as! NSDictionary
-        
-        let location = LocationModel()
-        
-        //the following insures none of the JsonElement values are nil through optional binding
-        if let nombre = jsonElement["Name"] as? String,
-            let direccion = jsonElement["Address"] as? String,
-            let latitud = jsonElement["Latitude"] as? String,
-            let longitud = jsonElement["Longitude"] as? String
-        {
+        if (statusCode == 200) {
+            print("Everyone is fine, file downloaded successfully.")
             
-            location.nombre = nombre
-            location.direccion = direccion
-            location.latitud = latitud
-            location.longitud = longitud
+            do{
+                
+                let json = try NSJSONSerialization.JSONObjectWithData(data!, options:.AllowFragments)
+                
+                if let stations = json["stations"] as? [[String: AnyObject]] {
+                    
+                    for station in stations {
+                        
+                        if let name = station["stationName"] as? String {
+                            
+                            if let year = station["buildYear"] as? String {
+                                print(name,year)
+                            }
+                            
+                        }
+                    }
+                    
+                }
+                
+            }catch {
+                print("Error with Json: \(error)")
+            }
             
         }
-        
-        locations.addObject(location)
-        
     }
     
-    dispatch_async(dispatch_get_main_queue(), { () -> Void in
-        
-        self.delegate.itemsDownloaded(locations)
-        
-    })
+    task.resume()
 }
