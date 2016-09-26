@@ -15,6 +15,8 @@
 		830A00EA1D99C450000630F2 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 830A00E81D99C450000630F2 /* LaunchScreen.storyboard */; };
 		830A00F51D99C450000630F2 /* pruebaTurismoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 830A00F41D99C450000630F2 /* pruebaTurismoTests.swift */; };
 		830A01001D99C450000630F2 /* pruebaTurismoUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 830A00FF1D99C450000630F2 /* pruebaTurismoUITests.swift */; };
+		830A010E1D99C954000630F2 /* HomeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 830A010D1D99C954000630F2 /* HomeModel.swift */; };
+		830A01101D99C96A000630F2 /* LocationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 830A010F1D99C96A000630F2 /* LocationModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +51,8 @@
 		830A00FB1D99C450000630F2 /* pruebaTurismoUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = pruebaTurismoUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		830A00FF1D99C450000630F2 /* pruebaTurismoUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = pruebaTurismoUITests.swift; sourceTree = "<group>"; };
 		830A01011D99C450000630F2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		830A010D1D99C954000630F2 /* HomeModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeModel.swift; sourceTree = "<group>"; };
+		830A010F1D99C96A000630F2 /* LocationModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -106,6 +110,8 @@
 				830A00E81D99C450000630F2 /* LaunchScreen.storyboard */,
 				830A00EB1D99C450000630F2 /* Info.plist */,
 				830A00E31D99C450000630F2 /* pruebaTurismo.xcdatamodeld */,
+				830A010D1D99C954000630F2 /* HomeModel.swift */,
+				830A010F1D99C96A000630F2 /* LocationModel.swift */,
 			);
 			path = pruebaTurismo;
 			sourceTree = "<group>";
@@ -259,8 +265,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				830A010E1D99C954000630F2 /* HomeModel.swift in Sources */,
 				830A00DF1D99C450000630F2 /* ViewController.swift in Sources */,
 				830A00DD1D99C450000630F2 /* AppDelegate.swift in Sources */,
+				830A01101D99C96A000630F2 /* LocationModel.swift in Sources */,
 				830A00E51D99C450000630F2 /* pruebaTurismo.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -488,6 +496,7 @@
 				830A01061D99C450000630F2 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		830A01071D99C450000630F2 /* Build configuration list for PBXNativeTarget "pruebaTurismoTests" */ = {
 			isa = XCConfigurationList;
@@ -496,6 +505,7 @@
 				830A01091D99C450000630F2 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		830A010A1D99C450000630F2 /* Build configuration list for PBXNativeTarget "pruebaTurismoUITests" */ = {
 			isa = XCConfigurationList;
@@ -504,6 +514,7 @@
 				830A010C1D99C450000630F2 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 
